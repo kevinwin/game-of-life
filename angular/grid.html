@@ -1,0 +1,8 @@
+<table>
+  <tr ng-repeat="row in $ctrl.rows">
+      <td ng-repeat="column in row.columns"
+          ng-click="$ctrl.activate($ctrl.rows.indexOf(row), $index, true);"
+          ng-class="{'new': column.active === 1, 'old':column.active > 1 }">
+      </td>
+  </tr>
+</table>

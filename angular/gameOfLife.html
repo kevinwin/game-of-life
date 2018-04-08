@@ -1,0 +1,9 @@
+<div>
+  <h3 style="text-align: center">Game Of Life</h3>
+  <grid generation="$ctrl.generation" rows="$ctrl.rows"></grid>
+  <toolbar generation="$ctrl.generation"
+           on-clear="$ctrl.clear()"
+           on-start-game="$ctrl.startGame(isRandom)"
+           on-stop-game="$ctrl.stopGame()">
+  </toolbar>
+</div>

@@ -90,7 +90,6 @@ function gameOfLifeController($interval) {
    const ctrl = this;
 
    if (random) {
-     console.log(random)
      ctrl.generation = 0;
      generateRandomSeeds(ctrl);
    }

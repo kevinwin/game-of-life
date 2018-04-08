@@ -1,58 +1,13 @@
 const gameOfLifeComponent = {
-  templateUrl: "gameOfLife.html",
-  controller: gameOfLifeController
+//    templateUrl: './gameOfLife.html',
+    template: require('./gameOfLife.html'),
+    controller: gameOfLifeController
 };
 
-const gridComponent = {
-  templateUrl: "grid.html",
-  bindings: {
-      rows: '<'
-  }
-};
+angular.module('main', [])
+       .component('gameOfLife', gameOfLifeComponent);
 
-const toolbarComponent = {
-  templateUrl: "toolbar.html",
-  controller: toolbarController,
-  bindings: {
-    generation: '<',
-    onClear: '&',
-    onStartGame: '&',
-    onStopGame: '&'
-  }
-};
-
-angular
-  .module("app", [])
-  .component("gameOfLife", gameOfLifeComponent)
-  .component("grid", gridComponent)
-  .component("toolbar", toolbarComponent);
-
-function toolbarController() {
-  const ctrl = this;
-
-  ctrl.notStopped = true;
-
-  ctrl.clear = function() {
-      ctrl.onClear();
-      ctrl.clearClicked = true;
-  };
-
-  ctrl.startGame = function(isRandom) {
-      if (ctrl.clearClicked) {
-        ctrl.onStartGame({isRandom: true})
-        ctrl.clearClicked = false;
-      } else {
-        ctrl.onStartGame({isRandom: isRandom})
-      }
-      ctrl.notStopped = true;
-  };
-
-  ctrl.stopGame = function() {
-      ctrl.onStopGame();
-      ctrl.notStopped = false;
-  }
-
-}
+gameOfLifeController.$inject = ['$interval'];
 
 function gameOfLifeController($interval) {
   const ctrl = this;
@@ -184,5 +139,3 @@ function createGrid(rowMax, colMax) {
   }
   return rows;
 }
-
-

@@ -30,16 +30,26 @@ angular
 function toolbarController() {
   const ctrl = this;
 
+  ctrl.notStopped = true;
+
   ctrl.clear = function() {
       ctrl.onClear();
+      ctrl.clearClicked = true;
   };
 
   ctrl.startGame = function(isRandom) {
-      ctrl.onStartGame(isRandom)
+      if (ctrl.clearClicked) {
+        ctrl.onStartGame({isRandom: true})
+        ctrl.clearClicked = false;
+      } else {
+        ctrl.onStartGame({isRandom: isRandom})
+      }
+      ctrl.notStopped = true;
   };
 
   ctrl.stopGame = function() {
       ctrl.onStopGame();
+      ctrl.notStopped = false;
   }
 
 }
@@ -78,9 +88,10 @@ function gameOfLifeController($interval) {
 
  function startGame(random = true) {
    const ctrl = this;
-   ctrl.generation = 0;
 
    if (random) {
+     console.log(random)
+     ctrl.generation = 0;
      generateRandomSeeds(ctrl);
    }
 

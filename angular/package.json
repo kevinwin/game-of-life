@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
-    "postbuild": "cp lib/angular.min.js dist/angular.min.js && cp index.html dist/index.html && cp styles/* dist/"
+    "postbuild": "cp lib/angular.min.js dist/angular.min.js && cp index.html dist/index.html && cp styles/* dist/",
+    "predeploy": "npm run build",
+    "deploy": "cp dist/* ../"
   },
   "keywords": [],
   "author": "",
